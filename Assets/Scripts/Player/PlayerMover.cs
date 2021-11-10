@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerInput),typeof(Player))]
 public class PlayerMover : MonoBehaviour
@@ -9,13 +10,14 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _speed;
 
     private PlayerInput _playerInput;
-    private Player _player;
     private Pointer _pointer;
+
+    public event UnityAction Walking;
+    public event UnityAction Stoped;
 
     private void Start()
     {
         _pointer = GetComponent<Pointer>();
-        _player = GetComponent<Player>();
     }
 
     private void OnEnable()
@@ -35,6 +37,7 @@ public class PlayerMover : MonoBehaviour
 
         Rotate(direction);
         transform.Translate(direction.normalized * _speed * Time.deltaTime, Space.World);
+        Walking?.Invoke();
     }
 
     private void Rotate(Vector3 direction)

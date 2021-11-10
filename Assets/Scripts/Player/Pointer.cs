@@ -6,8 +6,6 @@ public class Pointer : MonoBehaviour
 {
     [SerializeField] private LayerMask _walkable;
 
-    private Transform _playerPosition;
-
     public Vector3 GetPoint()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
