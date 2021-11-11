@@ -13,7 +13,6 @@ public class PlayerMover : MonoBehaviour
     private Pointer _pointer;
 
     public event UnityAction Walking;
-    public event UnityAction Stoped;
 
     private void Start()
     {
@@ -34,7 +33,7 @@ public class PlayerMover : MonoBehaviour
     private void Move()
     {
         Vector3 direction = _pointer.GetPoint() - transform.position;
-
+        direction.y = 0f;
         Rotate(direction);
         transform.Translate(direction.normalized * _speed * Time.deltaTime, Space.World);
         Walking?.Invoke();

@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Bag _bag;
+    [SerializeField] private int _money = 0;
 
-    // Update is called once per frame
-    void Update()
+    public event UnityAction<int> OnMoneyChange;
+
+    public Bag Bag => _bag;
+
+    public void AddMoney(int value)
     {
-        
+        _money += value;
+        OnMoneyChange?.Invoke(value);
     }
 }
