@@ -6,7 +6,7 @@ using System.Linq;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private float _spawnDelay;
-    [SerializeField] private BrickHolder _brickHolder;
+    [SerializeField] private BrickContainer _brickContainer;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Brick _brickTemplate;
 
@@ -18,16 +18,17 @@ public class Spawner : MonoBehaviour
 
         if (elapsedTime >= _spawnDelay)
         {
-            BrickPlace brickPlace = _brickHolder.Places.FirstOrDefault(place => place.IsAvailible);
+            BrickPlace brickPlace = _brickContainer.Places.FirstOrDefault(place => place.IsAvailible);
 
             if (brickPlace != default)
             {
                 brickPlace.Take();
                 var brick = Instantiate(_brickTemplate, _spawnPoint.position, _brickTemplate.transform.rotation);
                 brick.Init(brickPlace);
-                brick.GetComponent<Fly>().Init(brickPlace.transform.position, brickPlace.transform.rotation);
-                _brickHolder.OnBrickAdded();
+                brick.GetComponent<Fly>().InitFlyRoute(brickPlace.transform.position, brickPlace.transform.rotation);
+                _brickContainer.AddBrick();
             }
+
             elapsedTime = 0;
         }
     }

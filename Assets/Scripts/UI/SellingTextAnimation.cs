@@ -6,19 +6,22 @@ using DG.Tweening;
 
 public class SellingTextAnimation : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _selling;
+    [SerializeField] private float _fadeTime;
+    [SerializeField] private float _animTime;
+    [SerializeField] private float _animSpeed;
 
+    private TMP_Text tmp_text;
     public int _value { get; private set; }
 
     private void Start()
     {
-        TMP_Text tmp_text = GetComponent<TMP_Text>();
-        tmp_text.text = $"{_value}";
-        tmp_text.DOFade(0f, 0.5f);
-
-        transform.DOMove(transform.position + Vector3.up, 0.75f).OnComplete(() => {
+        tmp_text = GetComponent<TMP_Text>();
+        tmp_text.text = $"+${_value}";
+        tmp_text.DOFade(0f, _fadeTime).OnComplete(() => {
             Destroy(gameObject);
         });
+
+        transform.DOMove(transform.position + Vector3.up *_animSpeed, _animTime);
     }
 
     public void SetText(int value)

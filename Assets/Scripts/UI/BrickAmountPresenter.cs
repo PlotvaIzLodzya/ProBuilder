@@ -5,18 +5,18 @@ using TMPro;
 
 public class BrickAmountPresenter : MonoBehaviour
 {
-    [SerializeField] private BrickHolder _brickHolder;
+    [SerializeField] private BrickContainer _brickContainer;
     [SerializeField] private TMP_Text _brickStats;
 
 
     private void OnEnable()
     {
-        _brickHolder.BrickAmountChanged += UpdateBrickStats;
+        _brickContainer.BrickAmountChanged += UpdateBrickStats;
     }
 
     private void OnDisable()
     {
-        _brickHolder.BrickAmountChanged -= UpdateBrickStats;
+        _brickContainer.BrickAmountChanged -= UpdateBrickStats;
     }
 
     private void UpdateBrickStats(int currentBricksAmount, int maxbrickAmount)

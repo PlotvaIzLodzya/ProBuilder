@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Player))]
 public class BrickSellingAnimator : MonoBehaviour
 {
-    [SerializeField] private SellPoint sellPoint;
+    [SerializeField] private CollectionArea _collectionArea;
     [SerializeField] private SellingTextAnimation _text;
 
     private void OnEnable()
     {
-        sellPoint.BrickSold += ShowText;
+        _collectionArea.Collected += ShowText;
     }
 
     private void OnDisable()
     {
-        sellPoint.BrickSold -= ShowText;
+        _collectionArea.Collected -= ShowText;
     }
 
-    private void ShowText(int value, Vector3 spawnPoint)
+    private void ShowText(Brick brick)
     {
-        SellingTextAnimation text =Instantiate(_text, spawnPoint, _text.transform.rotation);
-        text.SetText(value);
+        SellingTextAnimation text = Instantiate(_text, brick.transform.position, _text.transform.rotation);
+        text.SetText(brick.Price);
     }
 }

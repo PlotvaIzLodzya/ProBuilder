@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(BrickHolder))]
 public class Bag : MonoBehaviour
 {
-    [SerializeField] private BrickHolder _bag;
+    [SerializeField] private BrickContainer _bag;
     [SerializeField] private Brick _brick;
     [SerializeField] private int _brickCount = 0;
     [SerializeField] private BoxCollider _brickCollector;
 
+    public int BrickCount => _brickCount;
     private  bool _isFull => _brickCount >= _bag.Places.Count;
+
+    public event UnityAction<int> BrickCollected;
+    public event UnityAction<int> BrickTaken;
 
     public void Put()
     {
@@ -18,10 +22,10 @@ public class Bag : MonoBehaviour
         _brickCount++;
         newBrick.transform.SetParent(this.transform);
 
+        BrickCollected?.Invoke(_brickCount);
+
         if (_isFull)
-        {
             _brickCollector.enabled = false;
-        }
     }
 
     public Brick TakeBrick(Vector3 targetPosition, Quaternion targetRotation)
@@ -31,15 +35,13 @@ public class Bag : MonoBehaviour
         if (_brickCount > 0)
         {
             _brickCount--;
+
             brick = transform.GetChild(_brickCount).GetComponent<Brick>();
-            Fly fly = brick.GetComponent<Fly>();
-            fly.transform.SetParent(null);
-            fly.Init(targetPosition, targetRotation);
 
             if (_isFull == false)
-            {
                 _brickCollector.enabled = true;
-            }
+
+            BrickTaken?.Invoke(-_brickCount);
 
             return brick;
         }

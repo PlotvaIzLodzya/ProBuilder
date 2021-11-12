@@ -5,9 +5,11 @@ using UnityEngine.Events;
 
 public class BrickPlace : MonoBehaviour
 {
+    [SerializeField] private bool _isInfinite;
+
     public bool IsAvailible { get; private set; }
 
-    public event UnityAction<BrickPlace> NeedBrick;
+    public event UnityAction<BrickPlace> FreePlace;
 
     private void Start()
     {
@@ -16,12 +18,13 @@ public class BrickPlace : MonoBehaviour
 
     public void Take()
     {
-        IsAvailible = false;
+        if (_isInfinite == false)
+            IsAvailible = false;
     }
 
     public void Free()
     {
         IsAvailible = true;
-        NeedBrick?.Invoke(this);
+        FreePlace?.Invoke(this);
     }
 }
