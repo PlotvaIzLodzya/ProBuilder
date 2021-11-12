@@ -8,6 +8,7 @@ public class CollectionArea : MonoBehaviour
 {
     [SerializeField] private BrickContainer _brickContainer;
     [SerializeField] private BoxCollider _interactionZone;
+    [SerializeField] private float _collectionDelay;
 
     private Coroutine _CollectCoroutine;
     private bool IsSellingArea;
@@ -63,7 +64,7 @@ public class CollectionArea : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(_collectionDelay);
         }
     }
 
