@@ -7,19 +7,21 @@ using System;
 public class BuildingAudioControl : AudioControl
 {
     [SerializeField] private BrickContainer _brickContainer;
+
     private BuildingCollectionArea _collectionArea;
 
     private void OnEnable()
     {
+        for (int i = 0; i < _brickContainer.Places.Count; i++)
+        {
+            Debug.Log("asd");
+            _brickContainer.Places[i].PlaceTaken += PlayBackward;
+        }
+
         _collectionArea = GetComponent<BuildingCollectionArea>();
 
         _brickContainer.BuildingComplete += OnBuildingComplete;
         _collectionArea.Entered += StopBackwardsPlay;
-
-        for (int i = 0; i < _brickContainer.Places.Count; i++)
-        {
-            _brickContainer.Places[i].PlaceTaken += PlayBackward;
-        }
     }
 
     private void OnDisable()

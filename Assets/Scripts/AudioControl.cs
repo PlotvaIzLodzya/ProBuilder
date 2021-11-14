@@ -30,6 +30,7 @@ public class AudioControl : MonoBehaviour
 
     public void PlayBackward()
     {
+        Debug.Log("asd");
         if (_backWardCoroutine == null)
         {
             _backWardCoroutine = StartCoroutine(PlayBackwardCoroutine());

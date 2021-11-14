@@ -29,8 +29,6 @@ public class CollectionArea : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-            
-
             CollectCoroutine = StartCoroutine(CollectFrom(player));
         }
     }
