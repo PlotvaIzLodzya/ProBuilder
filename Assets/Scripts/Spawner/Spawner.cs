@@ -5,9 +5,10 @@ using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] private int _brickPerSpawn;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private BrickContainer _brickContainer;
-    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Brick _brickTemplate;
 
     private float elapsedTime = 0;
@@ -18,15 +19,17 @@ public class Spawner : MonoBehaviour
 
         if (elapsedTime >= _spawnDelay)
         {
-            BrickPlace brickPlace = _brickContainer.Places.FirstOrDefault(place => place.IsAvailible);
-
-            if (brickPlace != default)
+            for (int i = 0; i < _spawnPoints.Length; i++)
             {
-                brickPlace.Take();
-                var brick = Instantiate(_brickTemplate, _spawnPoint.position, _brickTemplate.transform.rotation);
-                brick.Init(brickPlace);
-                brick.GetComponent<Fly>().InitFlyRoute(brickPlace.transform.position, brickPlace.transform.rotation);
-                _brickContainer.AddBrick();
+                BrickPlace brickPlace = _brickContainer.Places.FirstOrDefault(place => place.IsAvailible);
+
+                if (brickPlace != default)
+                {
+                    var brick = Instantiate(_brickTemplate, _spawnPoints[i].position, _brickTemplate.transform.rotation);
+                    brickPlace.Reserve(brick);
+                    brick.GetComponent<Fly>().InitFlyRoute(brickPlace.transform.position, brickPlace.transform.rotation);
+                    _brickContainer.AddBrick();
+                }
             }
 
             elapsedTime = 0;

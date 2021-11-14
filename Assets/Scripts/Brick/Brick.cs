@@ -1,27 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Brick : MonoBehaviour
 {
     [SerializeField] private int _price;
-
-    private BrickPlace _brickPlace;
-
+    
+    public int Index { get; private set; }
     public int Price => _price;
 
-    public void Init(BrickPlace brickPlace)
-    {
-        _brickPlace = brickPlace;
-    }
+    public event UnityAction Taken;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Bag bag))
         {
             bag.Put();
-            _brickPlace.Free();
+            Taken?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public void SetIndex(int index)
+    {
+        Index = index;
     }
 }

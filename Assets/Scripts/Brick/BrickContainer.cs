@@ -10,11 +10,12 @@ public class BrickContainer : MonoBehaviour
 
     private int _currentBricksAmount;
 
-    private int _maxBricksAmount => _places.Count;
     public List<BrickPlace> Places => _places;
+    private int _maxBricksAmount => _places.Count;
 
     public event UnityAction<int, int> BrickAmountChanged;
     public event UnityAction BrickPlaced;
+    public event UnityAction BuildingComplete;
 
     private void Start()
     {
@@ -26,7 +27,8 @@ public class BrickContainer : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             _places.Add(transform.GetChild(i).GetComponent<BrickPlace>());
-            _places[i].FreePlace += OnBrickTaken;
+            _places[i].PlaceTaken += OnPlaceTaken;
+            _places[i].PlaceFree += OnBrickTaken;
         }
     }
 
@@ -34,8 +36,17 @@ public class BrickContainer : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            _places[i].FreePlace -= OnBrickTaken;
+            _places[i].PlaceTaken -= OnPlaceTaken;
+            _places[i].PlaceFree -= OnBrickTaken;
         }
+    }
+
+    public void AddBrick()
+    {
+        _currentBricksAmount++;
+        BrickPlaced?.Invoke();
+
+        BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
     }
 
     private void OnBrickTaken(BrickPlace position)
@@ -44,10 +55,11 @@ public class BrickContainer : MonoBehaviour
         BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
     }
 
-    public void AddBrick()
+    private void OnPlaceTaken()
     {
-        _currentBricksAmount++;
-        BrickPlaced?.Invoke();
-        BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
+        if (_currentBricksAmount>=_maxBricksAmount)
+        {
+            BuildingComplete?.Invoke();
+        }
     }
 }

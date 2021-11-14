@@ -54,12 +54,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraMover.cs" />
+    <Compile Include="Assets\Scripts\AudioControl.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Brick\Fly.cs" />
     <Compile Include="Assets\Scripts\Player\Pointer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Brick\Brick.cs" />
     <Compile Include="Assets\Scripts\Brick\BrickPlace.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAudioControl.cs" />
+    <Compile Include="Assets\Scripts\SellPoint\SellArea.cs" />
     <Compile Include="Assets\Scripts\Brick\BrickContainer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\SellPoint\CollectionArea.cs" />
@@ -67,14 +70,12 @@
     <Compile Include="Assets\Scripts\UI\BrickAmountPresenter.cs" />
     <Compile Include="Assets\Scripts\Spawner\Spawner.cs" />
     <Compile Include="Assets\Scripts\SellPoint\BrickDestroyer.cs" />
+    <Compile Include="Assets\Scripts\Brick\BuildingAudioControl.cs" />
     <Compile Include="Assets\Scripts\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\UI\SellingTextAnimation.cs" />
     <Compile Include="Assets\Scripts\Brick\BrickSellingAnimator.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimatorController.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerAudioControl.cs" />
-    <Compile Include="Assets\Scripts\SellPoint\SellArea.cs" />
-    <Compile Include="Assets\Scripts\Brick\BuildingAudionControl.cs" />
-    <Compile Include="Assets\Scripts\AudioControl.cs" />
+    <Compile Include="Assets\Scripts\BuildingCollectionArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

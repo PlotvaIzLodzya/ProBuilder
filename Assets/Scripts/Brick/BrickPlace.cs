@@ -7,24 +7,36 @@ public class BrickPlace : MonoBehaviour
 {
     [SerializeField] private bool _isInfinite;
 
+    private Brick _brick;
     public bool IsAvailible { get; private set; }
 
-    public event UnityAction<BrickPlace> FreePlace;
+    public event UnityAction<BrickPlace> PlaceFree;
+    public event UnityAction PlaceTaken;
 
     private void Start()
     {
         IsAvailible = true;
     }
 
-    public void Take()
+    private void OnTriggerEnter(Collider other)
     {
-        if (_isInfinite == false)
-            IsAvailible = false;
+        if(other.gameObject.TryGetComponent(out Brick brick) && _brick == brick)
+        {
+            PlaceTaken?.Invoke();
+        }
+    }
+
+    public void Reserve(Brick brick)
+    {
+        IsAvailible = _isInfinite;
+        _brick = brick;
+        _brick.Taken += Free;
     }
 
     public void Free()
     {
         IsAvailible = true;
-        FreePlace?.Invoke(this);
+        PlaceFree?.Invoke(this);
+        _brick.Taken -= Free;
     }
 }

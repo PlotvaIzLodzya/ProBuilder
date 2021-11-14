@@ -11,24 +11,25 @@ public class Bag : MonoBehaviour
     [SerializeField] private BoxCollider _brickCollector;
 
     public int BrickCount => _brickCount;
-    private  bool _isFull => _brickCount >= _bag.Places.Count;
+    private bool _isFull => _brickCount >= _bag.Places.Count;
 
-    public event UnityAction<int> BrickCollected;
-    public event UnityAction<int> BrickTaken;
+    public event UnityAction BrickCollected;
+    public event UnityAction BrickGiven;
 
     public void Put()
     {
         Brick newBrick = Instantiate(_brick, _bag.Places[_brickCount].transform.position, _bag.Places[_brickCount].transform.rotation);
-        _brickCount++;
         newBrick.transform.SetParent(this.transform);
+        newBrick.SetIndex(_brickCount);
 
-        BrickCollected?.Invoke(_brickCount);
+        BrickCollected?.Invoke();
+        _brickCount++;
 
         if (_isFull)
             _brickCollector.enabled = false;
     }
 
-    public Brick TakeBrick(Vector3 targetPosition, Quaternion targetRotation)
+    public Brick GiveBrick(Vector3 targetPosition, Quaternion targetRotation)
     {
         Brick brick = null;
 
@@ -41,7 +42,7 @@ public class Bag : MonoBehaviour
             if (_isFull == false)
                 _brickCollector.enabled = true;
 
-            BrickTaken?.Invoke(-_brickCount);
+            BrickGiven?.Invoke();
 
             return brick;
         }

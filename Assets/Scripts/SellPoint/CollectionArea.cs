@@ -6,14 +6,14 @@ using UnityEngine.Events;
 
 public class CollectionArea : MonoBehaviour
 {
-    [SerializeField] private BrickContainer _brickContainer;
-    [SerializeField] private BoxCollider _interactionZone;
-    [SerializeField] private float _collectionDelay;
+    [SerializeField] protected BrickContainer _brickContainer;
+    [SerializeField] protected BoxCollider _interactionZone;
+    [SerializeField] protected float _collectionDelay;
 
-    private Coroutine _CollectCoroutine;
-    private bool IsSellingArea;
+    protected Coroutine CollectCoroutine;
 
     public event UnityAction<Brick> Collected;
+    
 
     private void OnEnable()
     {
@@ -29,8 +29,9 @@ public class CollectionArea : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
+            
 
-            _CollectCoroutine = StartCoroutine(CollectFrom(player));
+            CollectCoroutine = StartCoroutine(CollectFrom(player));
         }
     }
 
@@ -38,12 +39,12 @@ public class CollectionArea : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-            if (_CollectCoroutine != null)
-                StopCoroutine(_CollectCoroutine);
+            if (CollectCoroutine != null)
+                StopCoroutine(CollectCoroutine);
         }
     }
 
-    private IEnumerator CollectFrom(Player player)
+    protected IEnumerator CollectFrom(Player player)
     {
         Brick brick = null;
 
@@ -53,13 +54,15 @@ public class CollectionArea : MonoBehaviour
             
             if(place != default)
             {
-                brick = player.Bag.TakeBrick(place.transform.position, place.transform.rotation);
+                brick = player.Bag.GiveBrick(place.transform.position, place.transform.rotation);
 
                 if (brick != null)
                 {
                     Fly fly = brick.GetComponent<Fly>();
                     fly.InitFlyRoute(place.transform.position, place.transform.rotation);
-                    place.Take();
+
+                    place.Reserve(brick);
+
                     Collected?.Invoke(brick);
                 }
             }
