@@ -9,7 +9,7 @@ public class AudioControl : MonoBehaviour
     [SerializeField] protected AudioClip AudioClip;
     [SerializeField] protected float MaxPitch;
     [SerializeField] protected float PitchPerBrick;
-    [SerializeField] protected float StartPitch;
+    [SerializeField] protected float MinPitch;
 
     protected float PitchLevel;
     private Coroutine _backWardCoroutine;
@@ -38,7 +38,7 @@ public class AudioControl : MonoBehaviour
 
     private IEnumerator PlayBackwardCoroutine()
     {
-        while (_audioSource.pitch > StartPitch)
+        while (_audioSource.pitch > MinPitch)
         {
             DecreasetPitch();
             _audioSource.PlayOneShot(AudioClip, 1);
@@ -57,6 +57,12 @@ public class AudioControl : MonoBehaviour
     protected void DecreasetPitch()
     {
         _audioSource.pitch -= PitchPerBrick;
+        
+    }
+
+    private void PitchConstrain()
+    {
+        Mathf.Clamp(_audioSource.pitch, MinPitch, MaxPitch);
     }
 }
 
