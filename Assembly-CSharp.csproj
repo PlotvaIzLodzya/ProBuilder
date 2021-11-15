@@ -75,7 +75,6 @@
     <Compile Include="Assets\Scripts\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\UI\SellingTextAnimation.cs" />
     <Compile Include="Assets\Scripts\Brick\BrickSellingAnimator.cs" />
-    <Compile Include="Assets\Scripts\BuildingCollectionArea.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimatorController.cs" />
   </ItemGroup>
   <ItemGroup>

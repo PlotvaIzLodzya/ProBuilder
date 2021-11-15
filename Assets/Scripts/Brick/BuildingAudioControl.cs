@@ -8,7 +8,7 @@ public class BuildingAudioControl : AudioControl
 {
     [SerializeField] private BrickContainer _brickContainer;
 
-    private BuildingCollectionArea _collectionArea;
+    private CollectionArea _collectionArea;
 
     private void OnEnable()
     {
@@ -17,7 +17,7 @@ public class BuildingAudioControl : AudioControl
             _brickContainer.Places[i].PlaceTaken += PlayBackward;
         }
 
-        _collectionArea = GetComponent<BuildingCollectionArea>();
+        _collectionArea = GetComponent<CollectionArea>();
 
         _brickContainer.BuildingComplete += OnBuildingComplete;
     }
