@@ -1547,8 +1547,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.097516, y: 1, z: 0.69217837}
-  m_Center: {x: 4.44, y: 0.25, z: -0.61883336}
+  m_Size: {x: 2.4, y: 0.92, z: 1.38}
+  m_Center: {x: 4.75, y: 0.29, z: -1.43}
 --- !u!114 &418280859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brickContainer: {fileID: 1704914611}
   _interactionZone: {fileID: 418280858}
-  _collectionDelay: 0.12
+  _collectionDelay: 0.08
 --- !u!114 &418280864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   AudioClip: {fileID: 8300000, guid: 6206f6d2edd2228478ef9b61cbf7ff7c, type: 3}
   MaxPitch: 1.5
   PitchPerBrick: 0.02
-  StartPitch: 1
+  MinPitch: 1
   _bag: {fileID: 1007215879}
 --- !u!4 &529414841
 Transform:
@@ -3120,12 +3120,12 @@ Light:
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: 3
+    m_Resolution: 2
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.709
     m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NormalBias: 0
+    m_NearPlane: 0.85
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -3202,13 +3202,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709202207}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1704914614}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &709202209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3903,7 +3903,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: -3
   far clip plane: 20
   field of view: 61.8
   orthographic: 1
@@ -4774,7 +4774,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127977918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 520f393a719c5d947b431485aadaba20, type: 3}
+  m_Script: {fileID: 11500000, guid: 61cdfda4963b8b3488e3e6377bf711e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _brickContainer: {fileID: 1778339216}
@@ -4795,7 +4795,7 @@ MonoBehaviour:
   AudioClip: {fileID: 8300000, guid: 6206f6d2edd2228478ef9b61cbf7ff7c, type: 3}
   MaxPitch: 1.5
   PitchPerBrick: 0.02
-  StartPitch: 1
+  MinPitch: 1
   _brickContainer: {fileID: 1778339216}
 --- !u!82 &1127977926
 AudioSource:
@@ -6638,7 +6638,7 @@ GameObject:
   - component: {fileID: 1486629189}
   - component: {fileID: 1486629188}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BuildingObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7204,7 +7204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704914610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.748, y: 0.254, z: -1.898}
+  m_LocalPosition: {x: 1.748, y: 0.254, z: -1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 709202208}
@@ -11778,7 +11778,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 6c4c1921a319a7846ae39322d4dad9f4, type: 3}
+  - {fileID: 2100000, guid: d7246f1458a763b4eb8cde984bb20698, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
