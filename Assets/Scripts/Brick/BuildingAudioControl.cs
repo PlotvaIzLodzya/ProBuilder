@@ -32,6 +32,14 @@ public class BuildingAudioControl : AudioControl
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out Player player))
+        {
+            SetPitch(player.GetComponent<AudioSource>().pitch);
+        }
+    }
+
     public void SetPitch(float pitchLevel)
     {
         _audioSource.pitch = pitchLevel;

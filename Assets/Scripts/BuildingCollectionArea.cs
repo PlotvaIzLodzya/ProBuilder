@@ -10,8 +10,6 @@ public class BuildingCollectionArea : CollectionArea
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-            GetComponent<BuildingAudioControl>().SetPitch(player.GetComponent<AudioSource>().pitch);
-
             CollectCoroutine = StartCoroutine(CollectFrom(player));
         }
     }
