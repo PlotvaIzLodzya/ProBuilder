@@ -8,10 +8,10 @@ public class Enable : MonoBehaviour
 
     private void Start()
     {
-        EnableOnLoad(_building);
+        OnLoad(_building);
     }
 
-    private void EnableOnLoad(GameObject objectToEnable)
+    private void OnLoad(GameObject objectToEnable)
     {
         objectToEnable.SetActive(true);
     }

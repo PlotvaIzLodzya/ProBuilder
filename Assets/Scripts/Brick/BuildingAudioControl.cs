@@ -14,20 +14,17 @@ public class BuildingAudioControl : AudioControl
     {
         for (int i = 0; i < _brickContainer.Places.Count; i++)
         {
-            Debug.Log("asd");
             _brickContainer.Places[i].PlaceTaken += PlayBackward;
         }
 
         _collectionArea = GetComponent<BuildingCollectionArea>();
 
         _brickContainer.BuildingComplete += OnBuildingComplete;
-        _collectionArea.Entered += StopBackwardsPlay;
     }
 
     private void OnDisable()
     {
         _brickContainer.BuildingComplete -= OnBuildingComplete;
-        _collectionArea.Entered -= StopBackwardsPlay;
 
         for (int i = 0; i < _brickContainer.Places.Count; i++)
         {
@@ -42,6 +39,6 @@ public class BuildingAudioControl : AudioControl
 
     private void OnBuildingComplete()
     {
-        StopBackwardsPlay();
+
     }
 }

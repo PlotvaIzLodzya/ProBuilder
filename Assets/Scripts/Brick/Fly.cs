@@ -25,9 +25,7 @@ public class Fly : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, _speed * Time.deltaTime);
 
             if (Mathf.Abs( transform.position.z- targetPosition.z) > _zDistanceBeforeLanding)
-            {
                 transform.position = new Vector3(transform.position.x, transform.position.y + _ySpeed * Time.deltaTime, transform.position.z);
-            }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed);
             yield return null;

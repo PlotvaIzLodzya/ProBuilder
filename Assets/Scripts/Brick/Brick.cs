@@ -7,7 +7,6 @@ public class Brick : MonoBehaviour
 {
     [SerializeField] private int _price;
     
-    public int Index { get; private set; }
     public int Price => _price;
 
     public event UnityAction Taken;
@@ -20,10 +19,5 @@ public class Brick : MonoBehaviour
             Taken?.Invoke();
             Destroy(gameObject);
         }
-    }
-
-    public void SetIndex(int index)
-    {
-        Index = index;
     }
 }

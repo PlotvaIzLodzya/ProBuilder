@@ -30,21 +30,10 @@ public class AudioControl : MonoBehaviour
 
     public void PlayBackward()
     {
-        Debug.Log("asd");
         if (_backWardCoroutine == null)
         {
             _backWardCoroutine = StartCoroutine(PlayBackwardCoroutine());
         }
-    }
-
-    protected void StopBackwardsPlay()
-    {
-        if (_backWardCoroutine != null)
-        {
-            StopCoroutine(_backWardCoroutine);
-        }
-
-        _backWardCoroutine = null;
     }
 
     private IEnumerator PlayBackwardCoroutine()
@@ -56,6 +45,8 @@ public class AudioControl : MonoBehaviour
 
             yield return new WaitForSeconds(0.05f);
         }
+
+        _backWardCoroutine = null;
     }
 
     protected void IncreasePitch()

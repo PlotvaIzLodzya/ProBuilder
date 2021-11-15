@@ -20,7 +20,6 @@ public class Bag : MonoBehaviour
     {
         Brick newBrick = Instantiate(_brick, _bag.Places[_brickCount].transform.position, _bag.Places[_brickCount].transform.rotation);
         newBrick.transform.SetParent(this.transform);
-        newBrick.SetIndex(_brickCount);
 
         BrickCollected?.Invoke();
         _brickCount++;

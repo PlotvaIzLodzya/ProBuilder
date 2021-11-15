@@ -12,9 +12,7 @@ public class Pointer : MonoBehaviour
         RaycastHit hitInfo;
 
         if (Physics.Raycast(ray, out hitInfo, 100, _walkable))
-        {
             return hitInfo.point;
-        }
 
         return transform.position;
     }
