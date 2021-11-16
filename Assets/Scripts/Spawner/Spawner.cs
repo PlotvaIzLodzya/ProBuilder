@@ -26,8 +26,10 @@ public class Spawner : MonoBehaviour
                 if (brickPlace != default)
                 {
                     var brick = Instantiate(_brickTemplate, _spawnPoints[i].position, _brickTemplate.transform.rotation);
-                    brickPlace.Reserve(brick);
                     brick.GetComponent<Fly>().InitFlyRoute(brickPlace.transform.position, brickPlace.transform.rotation);
+
+                    brickPlace.Reserve(brick);
+
                     _brickContainer.AddBrick();
                 }
             }

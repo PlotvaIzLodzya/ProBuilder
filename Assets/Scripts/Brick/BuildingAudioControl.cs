@@ -8,16 +8,12 @@ public class BuildingAudioControl : AudioControl
 {
     [SerializeField] private BrickContainer _brickContainer;
 
-    private CollectionArea _collectionArea;
-
     private void OnEnable()
     {
         for (int i = 0; i < _brickContainer.Places.Count; i++)
         {
             _brickContainer.Places[i].PlaceTaken += PlayBackward;
         }
-
-        _collectionArea = GetComponent<CollectionArea>();
 
         _brickContainer.BuildingComplete += OnBuildingComplete;
     }
@@ -47,6 +43,7 @@ public class BuildingAudioControl : AudioControl
 
     private void OnBuildingComplete()
     {
-
+        if(BackWardCoroutine != null)
+            StopCoroutine(BackWardCoroutine);
     }
 }

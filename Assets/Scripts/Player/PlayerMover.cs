@@ -34,8 +34,11 @@ public class PlayerMover : MonoBehaviour
     {
         Vector3 direction = _pointer.GetPoint() - transform.position;
         direction.y = 0f;
+
         Rotate(direction);
+
         transform.Translate(direction.normalized * _speed * Time.deltaTime, Space.World);
+
         Walking?.Invoke();
     }
 

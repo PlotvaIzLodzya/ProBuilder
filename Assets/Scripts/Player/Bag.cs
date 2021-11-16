@@ -38,12 +38,10 @@ public class Bag : MonoBehaviour
 
             brick = transform.GetChild(_brickCount).GetComponent<Brick>();
 
-            if (_isFull == false)
-                _brickCollector.enabled = true;
-
             BrickGiven?.Invoke();
 
-            return brick;
+            if (_brickCollector.enabled == false && _isFull == false)
+                _brickCollector.enabled = true;
         }
 
         return brick;

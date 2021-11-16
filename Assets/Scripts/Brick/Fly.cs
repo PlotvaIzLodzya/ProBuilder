@@ -12,11 +12,10 @@ public class Fly : MonoBehaviour
 
     public void InitFlyRoute(Vector3 targetPosition, Quaternion targetRotation)
     {
-       Vector3 initialPosition = transform.position;
-       StartCoroutine(FlyAnimation(initialPosition, targetPosition, targetRotation));
+       StartCoroutine(FlyAnimation(targetPosition, targetRotation));
     }
 
-    private IEnumerator FlyAnimation(Vector3 initialPosition, Vector3 targetPosition, Quaternion targetRotation)
+    private IEnumerator FlyAnimation(Vector3 targetPosition, Quaternion targetRotation)
     {
         transform.SetParent(null);
 

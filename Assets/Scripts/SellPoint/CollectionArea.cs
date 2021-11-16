@@ -13,7 +13,6 @@ public class CollectionArea : MonoBehaviour
     protected Coroutine CollectCoroutine;
 
     public event UnityAction<Brick> Collected;
-    
 
     private void OnEnable()
     {

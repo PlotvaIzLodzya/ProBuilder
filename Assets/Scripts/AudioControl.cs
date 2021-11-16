@@ -12,7 +12,7 @@ public class AudioControl : MonoBehaviour
     [SerializeField] protected float MinPitch;
 
     protected float PitchLevel;
-    private Coroutine _backWardCoroutine;
+    protected Coroutine BackWardCoroutine;
 
     protected AudioSource _audioSource;
 
@@ -30,9 +30,9 @@ public class AudioControl : MonoBehaviour
 
     public void PlayBackward()
     {
-        if (_backWardCoroutine == null)
+        if (BackWardCoroutine == null)
         {
-            _backWardCoroutine = StartCoroutine(PlayBackwardCoroutine());
+            BackWardCoroutine = StartCoroutine(PlayBackwardCoroutine());
         }
     }
 
@@ -46,18 +46,19 @@ public class AudioControl : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        _backWardCoroutine = null;
+        BackWardCoroutine = null;
     }
 
     protected void IncreasePitch()
     {
         _audioSource.pitch += PitchPerBrick;
+        PitchConstrain();
     }
 
     protected void DecreasetPitch()
     {
         _audioSource.pitch -= PitchPerBrick;
-        
+        PitchConstrain();
     }
 
     private void PitchConstrain()
