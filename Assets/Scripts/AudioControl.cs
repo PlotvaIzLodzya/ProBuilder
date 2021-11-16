@@ -63,7 +63,7 @@ public class AudioControl : MonoBehaviour
 
     private void PitchConstrain()
     {
-        Mathf.Clamp(_audioSource.pitch, MinPitch, MaxPitch);
+        _audioSource.pitch = Mathf.Clamp(_audioSource.pitch, MinPitch, MaxPitch);
     }
 }
 
