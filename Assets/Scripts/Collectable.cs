@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Collectable : MonoBehaviour
+{
+    public event UnityAction Taken;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out Bag bag))
+        {
+            Collect(bag);
+            bag.Put();
+
+            if (gameObject.TryGetComponent(out Fly fly))
+                fly.StopFlying();
+
+            Taken?.Invoke();
+        }
+    }
+
+    private void Collect(Bag bag)
+    {
+        this.transform.SetParent(bag.transform);
+        this.transform.position = bag.BrickContainer.Places[bag.BrickCount].transform.position;
+        transform.rotation = bag.BrickContainer.Places[bag.BrickCount].transform.rotation;
+    }
+}

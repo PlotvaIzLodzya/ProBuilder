@@ -9,10 +9,11 @@ public class Fly : MonoBehaviour
 
     private float _ySpeed = 3.5f;
     private float _zDistanceBeforeLanding = 2f;
+    private Coroutine _flyCoroutine;
 
     public void InitFlyRoute(Vector3 targetPosition, Quaternion targetRotation)
     {
-       StartCoroutine(FlyAnimation(targetPosition, targetRotation));
+        _flyCoroutine = StartCoroutine(FlyAnimation(targetPosition, targetRotation));
     }
 
     private IEnumerator FlyAnimation(Vector3 targetPosition, Quaternion targetRotation)
@@ -29,5 +30,10 @@ public class Fly : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed);
             yield return null;
         }
+    }
+
+    public void StopFlying()
+    {
+        StopCoroutine(_flyCoroutine);
     }
 }

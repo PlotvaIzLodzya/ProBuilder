@@ -30,13 +30,13 @@ public class BrickPlace : MonoBehaviour
     {
         IsAvailible = _isInfinite;
         _brick = brick;
-        _brick.Taken += Free;
+        _brick.GetComponent<Collectable>().Taken += Free;
     }
 
     public void Free()
     {
         IsAvailible = true;
         PlaceFree?.Invoke(this);
-        _brick.Taken -= Free;
+        _brick.GetComponent<Collectable>().Taken -= Free;
     }
 }

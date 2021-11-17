@@ -5,23 +5,20 @@ using UnityEngine.Events;
 
 public class Bag : MonoBehaviour
 {
-    [SerializeField] private BrickContainer _bag;
-    [SerializeField] private Brick _brick;
+    [SerializeField] private BrickContainer _brickContainer;
     [SerializeField] private int _brickCount = 0;
     [SerializeField] private BoxCollider _brickCollector;
 
     public int BrickCount => _brickCount;
-    private bool _isFull => _brickCount >= _bag.Places.Count;
+    public BrickContainer BrickContainer => _brickContainer;
+    private bool _isFull => _brickCount >= _brickContainer.Places.Count;
 
     public event UnityAction BrickCollected;
     public event UnityAction BrickGiven;
 
     public void Put()
     {
-        Brick newBrick = Instantiate(_brick, _bag.Places[_brickCount].transform.position, _bag.Places[_brickCount].transform.rotation);
-        newBrick.transform.SetParent(this.transform);
-
-        BrickCollected?.Invoke();
+         BrickCollected?.Invoke();
         _brickCount++;
 
         if (_isFull)
