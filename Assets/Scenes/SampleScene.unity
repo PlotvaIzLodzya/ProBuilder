@@ -1528,7 +1528,6 @@ GameObject:
   - component: {fileID: 418280864}
   - component: {fileID: 418280863}
   - component: {fileID: 418280858}
-  - component: {fileID: 418280859}
   m_Layer: 0
   m_Name: SellPoint
   m_TagString: Untagged
@@ -1549,18 +1548,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 0.92, z: 1.38}
   m_Center: {x: 4.75, y: 0.29, z: -1.43}
---- !u!114 &418280859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418280857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6564037d9fe7ea24eb47dc924a1608f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &418280861
 Transform:
   m_ObjectHideFlags: 0
@@ -4241,8 +4228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b343a28fee5424a966c679c139677b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bag: {fileID: 547852176}
-  _brick: {fileID: 5748967270466201129, guid: efd50fcd54fcf6f43806e9504c1ce8bd, type: 3}
+  _brickContainer: {fileID: 547852176}
   _brickCount: 0
   _brickCollector: {fileID: 1007215878}
 --- !u!1 &1009353394
@@ -4997,7 +4983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d057e0ebfa3591e4ab4a2ac095f0ca7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brickPerSpawn: 2
   _spawnDelay: 0.4
   _brickContainer: {fileID: 8278874222388249172}
   _spawnPoints:
