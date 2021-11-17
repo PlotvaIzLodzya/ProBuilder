@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Bag bag))
         {
-            Collect(bag);
+            CollectTo(bag);
             bag.Put();
 
             if (gameObject.TryGetComponent(out Fly fly))
@@ -21,7 +21,7 @@ public class Collectable : MonoBehaviour
         }
     }
 
-    private void Collect(Bag bag)
+    private void CollectTo(Bag bag)
     {
         this.transform.SetParent(bag.transform);
         this.transform.position = bag.BrickContainer.Places[bag.BrickCount].transform.position;
