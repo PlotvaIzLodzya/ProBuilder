@@ -14,7 +14,7 @@ public class Collectable : MonoBehaviour
             CollectToBag(bag);
             bag.Put();
 
-            if (gameObject.TryGetComponent(out Fly fly))
+            if (gameObject.TryGetComponent(out Flyable fly))
                 fly.StopFlying();
 
             Taken?.Invoke();

@@ -57,7 +57,7 @@
     <Compile Include="Assets\Scripts\AudioControl.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Enable.cs" />
-    <Compile Include="Assets\Scripts\Brick\Fly.cs" />
+    <Compile Include="Assets\Scripts\Brick\Flyable.cs" />
     <Compile Include="Assets\FlatKit\Demos\Common\Scripts\Motion\CameraMouseOrbit.cs" />
     <Compile Include="Assets\Scripts\Player\Pointer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />

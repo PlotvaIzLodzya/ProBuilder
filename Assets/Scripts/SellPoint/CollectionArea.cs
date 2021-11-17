@@ -55,7 +55,7 @@ public class CollectionArea : MonoBehaviour
 
                 if (brick != null)
                 {
-                    Fly fly = brick.GetComponent<Fly>();
+                    Flyable fly = brick.GetComponent<Flyable>();
                     fly.InitFlyRoute(place.transform.position, place.transform.rotation);
 
                     place.Reserve(brick);
