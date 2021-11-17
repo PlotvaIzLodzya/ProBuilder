@@ -5,7 +5,6 @@ using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private int _brickPerSpawn;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private BrickContainer _brickContainer;
     [SerializeField] private Transform[] _spawnPoints;

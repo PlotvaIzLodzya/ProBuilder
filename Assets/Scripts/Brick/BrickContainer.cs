@@ -10,7 +10,7 @@ public class BrickContainer : MonoBehaviour
 
     private int _currentBricksAmount;
 
-    public List<BrickPlace> Places => _places;
+    public IReadOnlyList<BrickPlace> Places => _places;
     private int _maxBricksAmount => _places.Count;
 
     public event UnityAction<int, int> BrickAmountChanged;
