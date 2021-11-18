@@ -43,7 +43,6 @@ public class BuildingAudioControl : AudioControl
 
     private void OnBuildingComplete()
     {
-        if(BackWardCoroutine != null)
-            StopCoroutine(BackWardCoroutine);
+        StopCoroutine(BackWardCoroutine);
     }
 }

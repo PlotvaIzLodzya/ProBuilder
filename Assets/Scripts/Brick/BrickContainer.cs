@@ -27,18 +27,21 @@ public class BrickContainer : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             _places.Add(transform.GetChild(i).GetComponent<BrickPlace>());
-            _places[i].PlaceTaken += OnPlaceTaken;
+
             _places[i].PlaceFree += OnBrickTaken;
         }
+
+        _places[transform.childCount-1].PlaceTaken += OnLastPlaceTaken;
     }
 
     private void OnDisable()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            _places[i].PlaceTaken -= OnPlaceTaken;
             _places[i].PlaceFree -= OnBrickTaken;
         }
+
+        _places[transform.childCount - 1].PlaceTaken -= OnLastPlaceTaken;
     }
 
     public void AddBrick()
@@ -55,11 +58,8 @@ public class BrickContainer : MonoBehaviour
         BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
     }
 
-    private void OnPlaceTaken()
+    private void OnLastPlaceTaken()
     {
-        if (_currentBricksAmount>=_maxBricksAmount)
-        {
-            BuildingComplete?.Invoke();
-        }
+        BuildingComplete?.Invoke();
     }
 }
