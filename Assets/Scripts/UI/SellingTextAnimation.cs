@@ -11,12 +11,12 @@ public class SellingTextAnimation : MonoBehaviour
     [SerializeField] private float _animSpeed;
 
     private TMP_Text _tmpText;
-    public int _value { get; private set; }
+    public int Value { get; private set; }
 
     private void Start()
     {
         _tmpText = GetComponent<TMP_Text>();
-        _tmpText.text = $"+${_value}";
+        _tmpText.text = $"+${Value}";
         _tmpText.DOFade(0f, _fadeTime).OnComplete(() => {
             Destroy(gameObject);
         });
@@ -26,6 +26,6 @@ public class SellingTextAnimation : MonoBehaviour
 
     public void SetText(int value)
     {
-        _value = value;
+        Value = value;
     }
 }
